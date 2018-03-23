@@ -55,6 +55,7 @@ parser.add_argument('--save_folder', default='./weights/',
                     help='Location to save checkpoint models')
 args = parser.parse_args()
 
+torch.cuda.set_device(1)
 
 if not os.path.exists(args.save_folder):
     os.mkdir(args.save_folder)
@@ -202,7 +203,6 @@ def train():
 
         # load train data
         images, targets = next(batch_iterator)
-        
         #print(np.sum([torch.sum(anno[:,-1] == 2) for anno in targets]))
 
         if args.cuda:
@@ -227,9 +227,9 @@ def train():
         if iteration % 10 == 0:
             print('Epoch:' + repr(epoch) + ' || epochiter: ' + repr(iteration % epoch_size) + '/' + repr(epoch_size)
                   + '|| Totel iter ' +
-                  repr(iteration) + ' || L: %.4f C: %.4f||' % (
+                  repr(iteration) + ' || L: %.2f C: %.2f||' % (
                 loss_l.data[0],loss_c.data[0]) + 
-                'Batch time: %.4f sec. ||' % (load_t1 - load_t0) + 'LR: %.8f' % (lr))
+                'Batch time: %.3f sec. ||' % (load_t1 - load_t0) + 'LR: %.6f' % (lr))
 
     torch.save(net.state_dict(), args.save_folder +
                'Final_' + args.version +'_' + args.dataset+ '.pth')

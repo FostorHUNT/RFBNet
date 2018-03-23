@@ -348,6 +348,6 @@ def build_net(phase, size=300, num_classes=21):
         print("Error: Sorry only RFBNet300 and RFBNet512 are supported!")
         return
 
-    return RFBNet(phase, size, *multibox(size, vgg(base[str(size)], 3),
-                                add_extras(size, extras[str(size)], 1024),
-                                mbox[str(size)], num_classes), num_classes)
+    vgg_b, extra_layers, (loc_layers, conf_layers) = \
+            multibox(size, vgg(base[str(size)], 3), add_extras(size, extras[str(size)], 1024), mbox[str(size)], num_classes)
+    return RFBNet(phase, size, vgg_b, extra_layers, (loc_layers, conf_layers), num_classes)

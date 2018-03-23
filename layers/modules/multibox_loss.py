@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -71,7 +72,7 @@ class MultiBoxLoss(nn.Module):
             truths = targets[idx][:,:-1].data
             labels = targets[idx][:,-1].data
             defaults = priors.data
-            match(self.threshold,truths,defaults,self.variance,labels,loc_t,conf_t,idx)
+            loc_t, conf_t = match(self.threshold,truths,defaults,self.variance,labels,loc_t,conf_t,idx)
         if GPU:
             loc_t = loc_t.cuda()
             conf_t = conf_t.cuda()

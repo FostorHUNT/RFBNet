@@ -1,0 +1,7 @@
+#python
+weights
+logs
+results
+checkpoint
+checkpoint_trainval
+*.pyc

@@ -3,11 +3,11 @@ import os.path
 
 # gets home dir cross platform
 home = os.path.expanduser("~")
-ddir = os.path.join(home,"data/VOCdevkit/")
+ddir = os.path.join(home,"dataset/VOCdevkit/")
 
 # note: if you used our download scripts, this should be right
 VOCroot = ddir # path to VOCdevkit root dir
-COCOroot = os.path.join(home,"data/COCO/")
+COCOroot = os.path.join(home,"dataset/COCO/")
 
 
 #RFB CONFIGS
@@ -26,7 +26,7 @@ VOC_300 = {
 
     'variance' : [0.1, 0.2],
 
-    'clip' : True,
+    'clip' : False,
 }
 
 VOC_512= {
