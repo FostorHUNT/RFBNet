@@ -4,4 +4,6 @@ logs
 results
 checkpoint
 checkpoint_trainval
+utils/build/
 *.pyc
+*.so
